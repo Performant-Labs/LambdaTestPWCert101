@@ -15,8 +15,8 @@ const capabilities = {
     'platform': 'Windows 10',
     'build': 'Lambda Test 101',
     'name': 'Lambda Test 101',
-    'user': process.env.LT_USERNAME,
-    'accessKey': process.env.LT_ACCESS_KEY,
+    'user': 'aangel',
+    'accessKey': '0yWFfO2PHQ7lw1Qhx9UlRiEeKPAkI1RiQrfnCi74RtGCbRPUzH',
     'network': true,
     'video': true,
     'console': true

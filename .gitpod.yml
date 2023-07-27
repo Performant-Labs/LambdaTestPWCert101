@@ -6,5 +6,3 @@ tasks:
   - init: |
     npm install
     npx playwright install-deps
-    export LT_USERNAME=aangel
-    export LT_ACCESS_KEY=0yWFfO2PHQ7lw1Qhx9UlRiEeKPAkI1RiQrfnCi74RtGCbRPUzH
