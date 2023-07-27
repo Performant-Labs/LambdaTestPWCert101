@@ -104,5 +104,13 @@ test.describe('Lambda tests.', () => {
     await page.type('#inputState', 'Texas')
     await page.type('#inputZip', '99999')
 
+    await page.getByRole('button', { name: 'Submit' }).click()
+
+    // Validate error message.
+    const successMsg = await page.locator('p.success-msg')
+    await expect(successMsg).toBeVisible()
+
+    const successString = await successMsg.textContent()
+    await expect(successString).toBe("Thanks for contacting us, we will get back to you shortly.")
   })
 })
