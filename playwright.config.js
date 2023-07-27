@@ -8,6 +8,21 @@ import path from 'path'
  */
 require('dotenv').config();
 
+const capabilities = {
+  'browserName': 'Chrome', // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
+  'browserVersion': 'latest',
+  'LT:Options': {
+    'platform': 'Windows 10',
+    'build': 'Lambda Test 101',
+    'name': 'Lambda Test 101',
+    'user': process.env.LT_USERNAME,
+    'accessKey': process.env.LT_ACCESS_KEY,
+    'network': true,
+    'video': true,
+    'console': true
+  }
+}
+
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
@@ -25,8 +40,11 @@ module.exports = defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
+    connectOptions: {
+      wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`
+    },
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'http://automated-testing-kit-d10:8888/',
+    baseURL: 'https://www.lambdatest.com',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
