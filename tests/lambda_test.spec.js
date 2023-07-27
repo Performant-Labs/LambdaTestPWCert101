@@ -5,30 +5,30 @@
  */
 
 // Set up Playwright.
-const { test, expect } = require('@playwright/test')
+const { test, expect, chromium } = require('@playwright/test')
 
-// LambdaTest setup.
-(async () => {
-  const capabilities = {
-    'browserName': 'Chrome', // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
-    'browserVersion': 'latest',
-    'LT:Options': {
-      'platform': 'Windows 10',
-      'build': 'Lambda Test 101',
-      'name': 'Lambda Test 101',
-      'user': process.env.LT_USERNAME,
-      'accessKey': process.env.LT_ACCESS_KEY,
-      'network': true,
-      'video': true,
-      'console': true
-    }
+const capabilities = {
+  'browserName': 'Chrome', // Browsers allowed: `Chrome`, `MicrosoftEdge`, `pw-chromium`, `pw-firefox` and `pw-webkit`
+  'browserVersion': 'latest',
+  'LT:Options': {
+    'platform': 'Windows 10',
+    'build': 'Lambda Test 101',
+    'name': 'Lambda Test 101',
+    'user': process.env.LT_USERNAME,
+    'accessKey': process.env.LT_ACCESS_KEY,
+    'network': true,
+    'video': true,
+    'console': true
   }
+}
 
-  const browser = await chromium.connect({
-    wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`
-  })
 
+test.describe('Lambda tests.', () => {
   test('Scenario 1', async ({ page, context }) => {
+    const browser = await chromium.connect({
+      wsEndpoint: `wss://cdp.lambdatest.com/playwright?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`
+    })
+
     await page.goto('https://www.lambdatest.com/selenium-playground')
     await page.click('text="Simple Form Demo"')
 
@@ -132,4 +132,4 @@ const { test, expect } = require('@playwright/test')
     const successString = await successMsg.textContent()
     await expect(successString).toBe("Thanks for contacting us, we will get back to you shortly.")
   })
-})()
+})
