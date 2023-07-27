@@ -22,7 +22,7 @@ Gitpod environment was set up with:
 2. Install browsers and dependencies:
    npx playwright install
    npx playwright install-deps
-3. Playwright.config.js has been altered to run
+3. Playwright.config.js has been altered to run the tests on just Chromium and Safari.
 
 ## Run tests locally
 
