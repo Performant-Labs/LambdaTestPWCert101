@@ -7,8 +7,11 @@
 // Set up Playwright.
 const { test, expect, chromium } = require('@playwright/test')
 
+import {modifyCapabilities} from 'support/lamdaTestSupport.js'
+
 test.describe('Lambda tests.', () => {
   test('Scenario 1', async ({ page, context }) => {
+
     await page.goto('https://www.lambdatest.com/selenium-playground')
     await page.click('text="Simple Form Demo"')
 
